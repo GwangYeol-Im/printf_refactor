@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:44:46 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 22:35:28 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 23:17:23 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_info
 }				t_info;
 
 int				ft_printf(const char *str, ...);
-int				parse_str(char *str, va_list ap);
+void			parse_str(char *str, va_list ap, int *ret);
 void			check_flags(int c, t_info *info, va_list ap);
 void			check_width_and_prec(int c, t_info *info, va_list ap);
 int				parse_format(va_list ap, t_info *info);

@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:43:55 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 22:59:18 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 23:18:41 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,33 +69,32 @@ void		check_flags(int c, t_info *info, va_list ap)
 		check_width_and_prec(c, info, ap);
 }
 
-int			parse_str(char *str, va_list ap)
+void		parse_str(char *str, va_list ap, int *ret)
 {
-	int		ret;
 	int		i;
 	t_info	*info;
 
-	ret = 0;
 	i = 0;
 	if (!(info = (t_info *)malloc(sizeof(t_info))))
-		return (0);
+		return ;
 	while (str[i])
 	{
 		while (str[i] && str[i] != '%')
-			ret += put_char(str[i++]);
+			*ret += put_char(str[i++]);
 		if (!str[i])
 			break ;
 		init_info(info);
 		while (str[++i] && !check_specifier(str, i))
 			check_flags(str[i], info, ap);
-		info->type = str[i] ? str[i] : ' ';
+		if (!str[i])
+			break ;
+		info->type = str[i];
 		if ((info->minus == 1 || info->prec > -1) && info->type != '%')
 			info->zero = 0;
-		ret += parse_format(ap, info);
+		*ret += parse_format(ap, info);
 		i++;
 	}
 	free(info);
-	return (ret);
 }
 
 int			ft_printf(const char *str, ...)
@@ -103,8 +102,9 @@ int			ft_printf(const char *str, ...)
 	int		ret;
 	va_list	ap;
 
+	ret = 0;
 	va_start(ap, str);
-	ret = parse_str((char *)str, ap);
+	parse_str((char *)str, ap, &ret);
 	va_end(ap);
 	return (ret);
 }
