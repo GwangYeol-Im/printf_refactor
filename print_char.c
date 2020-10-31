@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 17:02:25 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 15:12:19 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 16:25:25 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int			print_char(int c, t_info *info)
 	i = 0;
 	while (i < info->width - 1)
 	{
-		put_char(' ');
+		if (info->zero == 1)
+			put_char('0');
+		else
+			put_char(' ');
 		i++;
 	}
 	if (info->minus == 0)

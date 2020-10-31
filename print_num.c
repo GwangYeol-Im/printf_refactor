@@ -6,11 +6,12 @@
 /*   By: gim <gim@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 17:22:49 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 15:02:27 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 16:41:57 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int			put_minus(char **buf, t_info *info)
 {
@@ -51,18 +52,24 @@ int			put_prec_str(unsigned long long num, char **buf, t_info *info)
 
 int			put_width_str(char **buf, t_info *info)
 {
+	int		i;
 	int		len;
 	char	*prefix;
 
 	len = ft_strlen(*buf);
 	if (info->width <= len && len > 0)
 		return (len);
-	if (!(prefix = (char *)malloc(sizeof(char) * (info->width - len))))
+	if (!(prefix = (char *)malloc(sizeof(char) * (info->width - len + 1))))
 		return (0);
-	if (info->zero == 1)
-		ft_memset(prefix, '0', info->width - len);
-	else
-		ft_memset(prefix, ' ', info->width - len);
+	i = 0;
+	while (i < info->width - len)
+	{
+		if (info->zero == 1)
+			prefix[i++] = '0';
+		else
+			prefix[i++] = ' ';
+	}
+	prefix[i] = '\0';
 	if (info->minus == 1)
 		*buf = ft_strjoin(*buf, prefix, 3);
 	else
