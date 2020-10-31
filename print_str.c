@@ -6,22 +6,12 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 17:08:11 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 22:35:41 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 22:43:11 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-char		*get_null_str(int len)
-{
-	char	*buf;
-
-	if (!(buf = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	buf = "(null)";
-	return (buf);
-}
 
 int			print_str(char *str, t_info *info)
 {
@@ -35,7 +25,7 @@ int			print_str(char *str, t_info *info)
 	len = ft_strlen(str);
 	if (info->prec > -1)
 		len = info->prec < len ? info->prec : len;
-	buf = str ? ft_substr(str, 0, len) : get_null_str(len);
+	buf = ft_substr(str, 0, len);
 	if (info->minus == 1)
 		ret += put_str(buf);
 	while (info->width-- > len)
