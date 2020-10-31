@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gim <gim@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: imgwang-yeol <imgwang-yeol@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:43:55 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 15:03:47 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 22:16:19 by imgwang-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			parse_str(char *str, va_list ap)
 		while (str[++i] && !check_specifier(str, i))
 			check_flags(str[i], info, ap);
 		info->type = str[i];
-		if (info->minus == 1 || info->prec > -1)
+		if ((info->minus == 1 || info->prec > -1) && info->type != '%')
 			info->zero = 0;
 		ret += parse_format(ap, info);
 		i++;

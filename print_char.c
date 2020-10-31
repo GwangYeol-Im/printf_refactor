@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gim <gim@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: imgwang-yeol <imgwang-yeol@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 17:02:25 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 16:25:25 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 22:21:14 by imgwang-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int			print_char(int c, t_info *info)
 {
 	int		i;
 
+	if (info->zero == 1 && info->minus == 1)
+		info->zero = 0;
 	if (info->width == 0)
 		return (put_char(c));
 	if (info->minus == 1)
