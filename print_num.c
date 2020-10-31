@@ -6,12 +6,11 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 17:22:49 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 22:35:38 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 22:59:54 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int			put_minus(char **buf, t_info *info)
 {

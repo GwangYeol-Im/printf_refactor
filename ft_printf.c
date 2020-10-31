@@ -6,7 +6,7 @@
 /*   By: gim <gim@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:43:55 by gim               #+#    #+#             */
-/*   Updated: 2020/10/31 22:35:27 by gim              ###   ########.fr       */
+/*   Updated: 2020/10/31 22:59:18 by gim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int			parse_str(char *str, va_list ap)
 		init_info(info);
 		while (str[++i] && !check_specifier(str, i))
 			check_flags(str[i], info, ap);
-		info->type = str[i];
+		info->type = str[i] ? str[i] : ' ';
 		if ((info->minus == 1 || info->prec > -1) && info->type != '%')
 			info->zero = 0;
 		ret += parse_format(ap, info);
